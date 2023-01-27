@@ -4,7 +4,7 @@ var scene, camera, renderer, WIDTH, HEIGHT;
 var PI = Math.PI;
 var t = 0;
 var a = 10;
-var body, bodypart;
+var body;
 var rleg, lleg, rleg2, lleg2;
 var rlegup, rlegdown, llegup, llegdown;
 var rarm, larm, rarm2, larm2;
@@ -74,8 +74,8 @@ function init(event) {
   larm2.add(larmdown);
   larm.add(larmup, larm2);
 
-  bodypart = makeline(bodyGeom);
-  body.add(rleg, lleg, rarm, larm, bodypart);
+  body = makeline(bodyGeom);
+  body.add(rleg, lleg, rarm, larm);
   scene.add(body);
 
   body.position.y = 10;
@@ -132,14 +132,14 @@ function update() {
   rarmup.position.y = -0.5 * a;
   rarm2.position.y = -a;
   rarmdown.position.y = -0.5 * a;
-  rarm2.rotation.z = (PI / 4) * 1;
+  rarm2.rotation.z = ((0.5 * sin(t + PI) + 1.5) * PI) / 8;
   rarm.rotation.z = (sin(t + PI) * PI) / 4;
 
   larmup.position.y = -0.5 * a;
   larm2.position.y = -a;
   larmdown.position.y = -0.5 * a;
-  larm2.rotation.z = (PI / 4) * 1;
+  larm2.rotation.z = ((0.5 * sin(t) + 1.5) * PI) / 8;
   larm.rotation.z = (sin(t) * PI) / 4;
 
-  body.rotation.y = (-sin(t) * PI) / 12;
+  body.rotation.y = (-sin(t) * PI) / 24;
 }
