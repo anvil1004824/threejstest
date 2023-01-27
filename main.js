@@ -115,7 +115,8 @@ function loop() {
 window.addEventListener("load", init, false);
 
 function update() {
-  t += 0.04;
+  t += 0.01;
+  if (t > 2 * PI) t = 0;
 
   rlegup.position.y = -0.5 * a;
   rleg2.position.y = -a;
