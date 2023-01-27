@@ -12,6 +12,15 @@ var rarmup, rarmdown, larmup, larmdown;
 var cos = Math.cos;
 var sin = Math.sin;
 
+function makeline(geometry) {
+  const edges = new THREE.EdgesGeometry(geometry);
+  const line = new THREE.LineSegments(
+    edges,
+    new THREE.LineBasicMaterial({ color: 0x000000 })
+  );
+  return line;
+}
+
 function init(event) {
   var container = document.getElementById("world");
 
@@ -47,25 +56,25 @@ function init(event) {
     shininess: 30,
     flatShading: true,
   });
-  rlegup = new THREE.Mesh(legGeom, material);
-  rlegdown = new THREE.Mesh(legGeom, material);
-  llegup = new THREE.Mesh(legGeom, material);
-  llegdown = new THREE.Mesh(legGeom, material);
+  rlegup = makeline(legGeom);
+  rlegdown = makeline(legGeom);
+  llegup = makeline(legGeom);
+  llegdown = makeline(legGeom);
   rleg2.add(rlegdown);
   rleg.add(rlegup, rleg2);
   lleg2.add(llegdown);
   lleg.add(llegup, lleg2);
 
-  rarmup = new THREE.Mesh(armGeom, material);
-  rarmdown = new THREE.Mesh(armGeom, material);
-  larmup = new THREE.Mesh(armGeom, material);
-  larmdown = new THREE.Mesh(armGeom, material);
+  rarmup = makeline(armGeom);
+  rarmdown = makeline(armGeom);
+  larmup = makeline(armGeom);
+  larmdown = makeline(armGeom);
   rarm2.add(rarmdown);
   rarm.add(rarmup, rarm2);
   larm2.add(larmdown);
   larm.add(larmup, larm2);
 
-  bodypart = new THREE.Mesh(bodyGeom, material);
+  bodypart = makeline(bodyGeom);
   body.add(rleg, lleg, rarm, larm, bodypart);
   scene.add(body);
 
