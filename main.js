@@ -115,7 +115,7 @@ function loop() {
 window.addEventListener("load", init, false);
 
 function update() {
-  t += 0.1;
+  t += 0.04;
 
   rlegup.position.y = -0.5 * a;
   rleg2.position.y = -a;
